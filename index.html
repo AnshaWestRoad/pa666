@@ -2,66 +2,139 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>致富链接</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>富可敌国</title>
     <style>
-        /* 使用你的图片作为背景 */
+        /* 基础样式保持原有移动端优化 */
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             background: url('https://raw.githubusercontent.com/AnshaWestRoad/pa666/main/mmexport1746175001879.png') no-repeat center/cover;
-            font-family: "华康少女文字W5", cursive;
+            font-family: -apple-system, BlinkMacSystemFont, "华康少女文字W5", sans-serif;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
         }
-        
-        /* 毛玻璃遮罩层 */
-        body::after {
-            content: '';
+
+        /* 新增涟漪效果关键样式 */
+        .ripple {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(8px);
-            z-index: -1;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            pointer-events: none;
+            animation: rippleEffect 0.6s ease-out;
+            transform: translate(-50%, -50%);
         }
 
-        /* 萌系按钮 */
+        @keyframes rippleEffect {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
+        }
+
+        /* 压感物理动画 */
         .button {
-            background: rgba(255,182,193,0.3);
-            border: 3px solid #ff69b4;
-            border-radius: 25px;
-            padding: 15px 40px;
-            color: #fff;
-            font-size: 1.3em;
-            transition: all 0.3s;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            transition: 
+                transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+                box-shadow 0.3s ease;
         }
 
-        .button:hover {
-            background: rgba(255,105,180,0.6);
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255,105,180,0.4);
+        /* 安卓长按优化 */
+        .button {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
         }
     </style>
 </head>
 <body>
-    <h1 style="text-align:center; color:#fff; margin-top:10vh;">🌸 喵の秘密通道</h1>
-    <div style="position:absolute; bottom:20%; width:100%; text-align:center;">
-        <a class="button" 
-           href="https://156.234.70.11:8888/#/link?join=656206"
-           target="_blank"
-           rel="noopener noreferrer">
-           C7娱乐
-        </a><br><br>
-        <a class="button"
-           href="https://www.d3788.com"
-           target="_blank"
-           rel="noopener noreferrer">
-           尊龙凯时
-        </a>
+    <h1>🐾 白茶轻饮无别事、我在等花也等你</h1>
+    <div class="button-container">
+        <!-- 保持原有按钮结构 -->
+        <a class="button" href="...">🎮 C7娱乐</a>
+        <a class="button" href="...">🎲 尊龙凯时</a>
     </div>
+
+    <script>
+        // 跨平台触摸检测
+        function isTouchDevice() {
+            return 'ontouchstart' in window || navigator.maxTouchPoints;
+        }
+
+        // 物理涟漪生成器
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const rect = button.getBoundingClientRect();
+            
+            // 兼容鼠标和触摸事件
+            const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+            const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            
+            // 精准定位
+            ripple.style.left = `${clientX - rect.left}px`;
+            ripple.style.top = `${clientY - rect.top}px`;
+            
+            // 动态压力感应（仅限支持Force Touch设备）
+            let pressure = 1;
+            if (typeof event.force === 'number') {
+                pressure = Math.min(event.force * 2, 3);
+            }
+            ripple.style.transform = `translate(-50%, -50%) scale(${pressure})`;
+
+            button.appendChild(ripple);
+
+            // 自动清理
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        // 跨平台事件绑定
+        document.querySelectorAll('.button').forEach(button => {
+            if (isTouchDevice()) {
+                // 移动端触摸事件
+                button.addEventListener('touchstart', function(e) {
+                    createRipple(e);
+                    this.style.transform = 'scale(0.95)';
+                });
+
+                button.addEventListener('touchend', function() {
+                    this.style.transform = 'scale(1)';
+                });
+
+                // 防止长按菜单
+                button.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                });
+            } else {
+                // 桌面端鼠标事件
+                button.addEventListener('mousedown', createRipple);
+                button.addEventListener('mouseup', function() {
+                    this.style.transform = 'scale(1)';
+                });
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            }
+
+            // 通用压感动画
+            button.addEventListener('mousedown', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+        });
+
+        // iOS弹性滚动锁定
+        document.body.addEventListener('touchmove', function(e) {
+            if(e.scale !== 1) e.preventDefault();
+        }, { passive: false });
+    </script>
 </body>
 </html>
