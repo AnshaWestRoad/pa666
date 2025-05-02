@@ -1,140 +1,50 @@
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>富可敌国</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PA</title>
     <style>
-        /* 基础样式保持原有移动端优化 */
         body {
             margin: 0;
-            min-height: 100vh;
-            background: url('https://raw.githubusercontent.com/AnshaWestRoad/pa666/main/mmexport1746175001879.png') no-repeat center/cover;
-            font-family: -apple-system, BlinkMacSystemFont, "华康少女文字W5", sans-serif;
-            position: relative;
-            overflow-x: hidden;
+            padding: 0;
+            font-family: "微软雅黑", sans-serif;
+            background: url('https://i.imgur.com/0Z6oQnE.png') no-repeat center center fixed;
+            background-size: cover;
+            backdrop-filter: blur(0px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            text-shadow: 0 0 5px black;
         }
-
-        /* 新增涟漪效果关键样式 */
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.4);
-            pointer-events: none;
-            animation: rippleEffect 0.6s ease-out;
-            transform: translate(-50%, -50%);
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
         }
-
-        @keyframes rippleEffect {
-            0% {
-                width: 0;
-                height: 0;
-                opacity: 1;
-            }
-            100% {
-                width: 200px;
-                height: 200px;
-                opacity: 0;
-            }
-        }
-
-        /* 压感物理动画 */
         .button {
-            transition: 
-                transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28),
-                box-shadow 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.3s;
         }
-
-        /* 安卓长按优化 */
-        .button {
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-    <h1>🐾 白茶轻饮无别事、我在等花也等你</h1>
-    <div class="button-container">
-        <!-- 保持原有按钮结构 -->
-        <a class="button" href="...">🎮 C7娱乐</a>
-        <a class="button" href="...">🎲 尊龙凯时</a>
-    </div>
-
-    <script>
-        // 跨平台触摸检测
-        function isTouchDevice() {
-            return 'ontouchstart' in window || navigator.maxTouchPoints;
-        }
-
-        // 物理涟漪生成器
-        function createRipple(event) {
-            const button = event.currentTarget;
-            const rect = button.getBoundingClientRect();
-            
-            // 兼容鼠标和触摸事件
-            const clientX = event.touches ? event.touches[0].clientX : event.clientX;
-            const clientY = event.touches ? event.touches[0].clientY : event.clientY;
-
-            const ripple = document.createElement('div');
-            ripple.className = 'ripple';
-            
-            // 精准定位
-            ripple.style.left = `${clientX - rect.left}px`;
-            ripple.style.top = `${clientY - rect.top}px`;
-            
-            // 动态压力感应（仅限支持Force Touch设备）
-            let pressure = 1;
-            if (typeof event.force === 'number') {
-                pressure = Math.min(event.force * 2, 3);
-            }
-            ripple.style.transform = `translate(-50%, -50%) scale(${pressure})`;
-
-            button.appendChild(ripple);
-
-            // 自动清理
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        }
-
-        // 跨平台事件绑定
-        document.querySelectorAll('.button').forEach(button => {
-            if (isTouchDevice()) {
-                // 移动端触摸事件
-                button.addEventListener('touchstart', function(e) {
-                    createRipple(e);
-                    this.style.transform = 'scale(0.95)';
-                });
-
-                button.addEventListener('touchend', function() {
-                    this.style.transform = 'scale(1)';
-                });
-
-                // 防止长按菜单
-                button.addEventListener('contextmenu', function(e) {
-                    e.preventDefault();
-                });
-            } else {
-                // 桌面端鼠标事件
-                button.addEventListener('mousedown', createRipple);
-                button.addEventListener('mouseup', function() {
-                    this.style.transform = 'scale(1)';
-                });
-                button.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
-                });
-            }
-
-            // 通用压感动画
-            button.addEventListener('mousedown', function() {
-                this.style.transform = 'scale(0.95)';
-            });
-        });
-
-        // iOS弹性滚动锁定
-        document.body.addEventListener('touchmove', function(e) {
-            if(e.scale !== 1) e.preventDefault();
-        }, { passive: false });
-    </script>
+    <h1>pa666.xyz</h1>
+    <a class="button" href="https://156.234.70.11:8888/#/link?join=656206" target="_blank">C7娱乐</a>
+    <a class="button" href="https://www.d3788.com" target="_blank">尊龙凯时</a>
 </body>
 </html>
