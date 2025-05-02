@@ -1,17 +1,124 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pa666.xyz</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>PA666の传送门</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "微软雅黑", sans-serif;
+      color: white;
+      text-align: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -2;
+    }
+    .catgirl {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 100%;
+      height: auto;
+      z-index: -1;
+      opacity: 0.9;
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2em;
+      text-shadow: 0 0 10px black;
+      margin-bottom: 30px;
+    }
+    .button {
+      background-color: rgba(255, 255, 255, 0.2);
+      border: 2px solid white;
+      color: white;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .button:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
+  <canvas id="stars"></canvas>
+  <img class="catgirl" src="https://i.imgur.com/y6Olbvb.png" alt="catgirl" />
   <div class="container">
-    <div class="buttons">
-      <a href="https://156.234.70.11:8888/#/link?join=656206" class="btn" target="_blank">C7娱乐</a>
-      <a href="https://www.d3788.com" class="btn" target="_blank">尊龙凯时</a>
-    </div>
+    <h1>PA666の传送门</h1>
+    <a class="button" href="https://156.234.70.11:8888/#/link?join=656206">C7娱乐</a>
+    <a class="button" href="https://www.d3788.com">尊龙凯时</a>
   </div>
+
+  <script>
+    // 星空背景
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
+    let stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      stars = [];
+      for (let i = 0; i < 100; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.5,
+          d: Math.random() * 1.5
+        });
+      }
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "white";
+      for (let i = 0; i < stars.length; i++) {
+        const s = stars[i];
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2, true);
+        ctx.fill();
+        s.y += s.d;
+        if (s.y > canvas.height) {
+          s.y = 0;
+          s.x = Math.random() * canvas.width;
+        }
+      }
+    }
+
+    function animate() {
+      drawStars();
+      requestAnimationFrame(animate);
+    }
+
+    resizeCanvas();
+    animate();
+    window.addEventListener("resize", resizeCanvas);
+  </script>
 </body>
 </html>
