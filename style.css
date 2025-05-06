@@ -18,6 +18,8 @@ body, html {
   z-index: 0;
   background: url('https://raw.githubusercontent.com/AnshaWestRoad/pa666/901ed13dacef761fe22f4570fda11517fb0e23cf/mmexport1746175001879.png') no-repeat center center fixed;
   background-size: cover;
+  top: 0;
+  left: 0;
 }
 
 .content {
@@ -66,7 +68,6 @@ body, html {
   transform: scale(1.05);
 }
 
-/* 移动端适配 */
 @media (max-width: 600px) {
   .title {
     font-size: 2em;
