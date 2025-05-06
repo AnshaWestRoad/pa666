@@ -7,4 +7,64 @@
 html, body {
   height: 100%;
   font-family: 'Segoe UI', sans-serif;
-  background: url('https://raw.githubusercontent.com/AnshaWestRoad/pa666/901ed13dacef761fe22f4570fda11517fb0e23cf
+  background: url('https://raw.githubusercontent.com/AnshaWestRoad/pa666/901ed13dacef761fe22f4570fda11517fb0e23cf/mmexport1746175001879.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  font-size: 2.5em;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+  margin-bottom: 40px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #ff99cc;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 2em;
+  }
+
+  .btn {
+    font-size: 15px;
+    padding: 12px;
+  }
+}
