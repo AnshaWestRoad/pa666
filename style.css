@@ -4,22 +4,18 @@
   box-sizing: border-box;
 }
 
-body, html {
+html, body {
   height: 100%;
   font-family: 'Segoe UI', sans-serif;
-  overflow: hidden;
-  position: relative;
 }
 
 #particles-js {
   position: fixed;
   width: 100%;
   height: 100%;
-  z-index: 0;
   background: url('https://raw.githubusercontent.com/AnshaWestRoad/pa666/901ed13dacef761fe22f4570fda11517fb0e23cf/mmexport1746175001879.png') no-repeat center center fixed;
   background-size: cover;
-  top: 0;
-  left: 0;
+  z-index: 0;
 }
 
 .content {
@@ -29,17 +25,16 @@ body, html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  text-align: center;
+  height: 100%;
   padding: 20px;
+  text-align: center;
 }
 
 .title {
-  font-size: 2.8em;
-  font-weight: bold;
-  color: white;
-  text-shadow: 0 0 5px black;
-  margin-bottom: 40px;
+  font-size: 2.5em;
+  color: #fff;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+  margin-bottom: 30px;
   line-height: 1.4;
 }
 
@@ -47,34 +42,34 @@ body, html {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  width: 100%;
+  max-width: 300px;
 }
 
 .btn {
-  display: inline-block;
-  padding: 15px 30px;
-  background: rgba(255, 255, 255, 0.85);
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.9);
   color: #333;
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: 8px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn:hover {
   background: #ff99cc;
-  color: white;
+  color: #fff;
   transform: scale(1.05);
 }
 
 @media (max-width: 600px) {
   .title {
-    font-size: 2em;
+    font-size: 1.8em;
   }
 
   .btn {
-    font-size: 16px;
-    padding: 12px 25px;
+    font-size: 14px;
+    padding: 12px;
   }
 }
