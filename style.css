@@ -1,15 +1,79 @@
-/* 星空背景容器 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
 #particles-js {
   position: fixed;
   width: 100%;
   height: 100%;
-  z-index: -2;
+  z-index: 0;
+  background: url('https://raw.githubusercontent.com/AnshaWestRoad/pa666/901ed13dacef761fe22f4570fda11517fb0e23cf/mmexport1746175001879.png') no-repeat center center fixed;
+  background-size: cover;
 }
 
-/* 标题样式 */
-.site-title {
-  font-size: 28px;
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  font-size: 2.8em;
+  font-weight: bold;
   color: white;
-  margin-bottom: 30px;
-  text-shadow: 0 0 10px #000;
+  text-shadow: 0 0 5px black;
+  margin-bottom: 40px;
+  line-height: 1.4;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #333;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  background: #ff99cc;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* 移动端适配 */
+@media (max-width: 600px) {
+  .title {
+    font-size: 2em;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 12px 25px;
+  }
 }
