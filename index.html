@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>真人娱乐第一品牌</title>
+  <title>打不开换个浏览器</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <canvas id="stars"></canvas>
+  <!-- 星空粒子背景 -->
+  <div id="particles-js"></div>
 
   <div class="content">
     <h1 class="title">打不开<br>换个浏览器</h1>
-
     <div class="buttons">
       <a href="https://wxjump.paradisemall.net/app/register.php?site_id=1032&topId=366487" class="btn" target="_blank">超凡国际</a>
       <a href="https://156.234.70.11:8888/#/link?join=656206" class="btn" target="_blank">C7娱乐</a>
@@ -21,5 +21,10 @@
   </div>
 
   <script src="particles.js"></script>
+  <script>
+    particlesJS.load('particles-js', 'particles.json', function () {
+      console.log('particles.js loaded.');
+    });
+  </script>
 </body>
 </html>
