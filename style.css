@@ -1,54 +1,15 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body, html {
+/* 星空背景容器 */
+#particles-js {
+  position: fixed;
+  width: 100%;
   height: 100%;
-  font-family: 'Segoe UI', sans-serif;
-  background: url('https://raw.githubusercontent.com/AnshaWestRoad/pa666/901ed13dacef761fe22f4570fda11517fb0e23cf/mmexport1746175001879.png') no-repeat center center fixed;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 2s ease-in;
+  z-index: -2;
 }
 
-.container {
-  text-align: center;
-  backdrop-filter: blur(6px);
-  padding: 20px;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 15px 30px;
-  background: rgba(255, 255, 255, 0.85);
-  color: #333;
-  text-decoration: none;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 18px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.btn:hover {
-  background: #ff99cc;
+/* 标题样式 */
+.site-title {
+  font-size: 28px;
   color: white;
-  transform: scale(1.05);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px #000;
 }
