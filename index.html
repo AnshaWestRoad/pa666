@@ -12,6 +12,7 @@
       background-size: cover;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
+
     .overlay {
       position: absolute;
       top: 0;
@@ -23,35 +24,106 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: white;
       text-align: center;
     }
+
+    /* ✨ 发光标题 */
     .title {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
+      font-size: 3.5rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00f0ff, #00aaff, #0066ff);
+      background-size: 200% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 8px #00ffff, 0 0 15px #0099ff;
+      animation: glow 3s linear infinite;
     }
+
+    @keyframes glow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     .buttons {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 20px;
+      margin-top: 40px;
     }
+
+    /* 🌈 终极炫酷按钮 */
     .btn {
-      padding: 12px 24px;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: white;
+      position: relative;
+      padding: 14px 28px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ffffff;
       text-decoration: none;
-      border-radius: 6px;
-      font-size: 1.1rem;
-      transition: background 0.3s ease;
+      border-radius: 10px;
+      z-index: 0;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 224, 255, 0.5);
+      border: 2px solid transparent;
     }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(120deg, #00ffff, #00aaff, #0033ff, #00ffff);
+      background-size: 400% 400%;
+      animation: borderGlow 6s linear infinite;
+      z-index: -2;
+      filter: blur(20px);
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      z-index: -1;
+      border-radius: 10px;
+    }
+
     .btn:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #00e0ff, 0 0 60px #00aaff;
+      background: rgba(0, 224, 255, 0.1);
+    }
+
+    @keyframes borderGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* 移动端响应优化 */
+    @media (max-width: 600px) {
+      .title {
+        font-size: 2rem;
+      }
+      .btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="overlay">
-    <h1 class="title">不凡成就非凡</h1>
+    <h1 class="title">真人娱乐第一品牌</h1>
     <div class="buttons">
       <a href=" " class="btn" target="_blank">超凡国际</a >
       <a href="https://156.234.70.11:8888/#/link?join=656206" class="btn" target="_blank">C7娱乐</a >
