@@ -11,6 +11,7 @@
       background: url("https://cdn.jsdelivr.net/gh/AnshaWestRoad/pa666@bbe059779346a1072e126ecc125dff68eb9f37de/mmexport1746175001879.png") no-repeat center center fixed;
       background-size: cover;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: white;
     }
 
     .overlay {
@@ -19,18 +20,30 @@
       left: 0;
       width: 100%;
       height: 100%;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(10px);
+      background-color: rgba(0, 0, 0, 0.25);
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       text-align: center;
+      z-index: 1;
     }
 
-    /* ✨ 发光标题 */
+    .header {
+      position: absolute;
+      top: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 1rem;
+      animation: rainbow 5s linear infinite;
+      font-weight: bold;
+    }
+
     .title {
       font-size: 3.5rem;
       font-weight: bold;
+      margin-bottom: 20px;
       background: linear-gradient(90deg, #00f0ff, #00aaff, #0066ff);
       background-size: 200% auto;
       color: transparent;
@@ -41,91 +54,43 @@
       animation: glow 3s linear infinite;
     }
 
-    @keyframes glow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     .buttons {
       display: flex;
       flex-direction: column;
       gap: 20px;
-      margin-top: 40px;
     }
 
-    /* 🌈 终极炫酷按钮 */
     .btn {
-      position: relative;
       padding: 14px 28px;
       font-size: 1.2rem;
       font-weight: bold;
       color: #ffffff;
       text-decoration: none;
       border-radius: 10px;
-      z-index: 0;
-      overflow: hidden;
       background: rgba(0, 0, 0, 0.6);
-      transition: all 0.3s ease;
       box-shadow: 0 0 15px rgba(0, 224, 255, 0.5);
       border: 2px solid transparent;
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(120deg, #00ffff, #00aaff, #0033ff, #00ffff);
-      background-size: 400% 400%;
-      animation: borderGlow 6s linear infinite;
-      z-index: -2;
-      filter: blur(20px);
-    }
-
-    .btn::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: inherit;
-      z-index: -1;
-      border-radius: 10px;
+      transition: transform 0.3s ease;
     }
 
     .btn:hover {
       transform: scale(1.05);
       box-shadow: 0 0 30px #00e0ff, 0 0 60px #00aaff;
-      background: rgba(0, 224, 255, 0.1);
     }
 
-    @keyframes borderGlow {
+    @keyframes glow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    /* 🌈 彩虹文字样式 */
-    #currentTime, #runtime {
-      font-size: 16px;
-      font-weight: bold;
-      text-align: center;
-      margin: 10px 0;
-      background: linear-gradient(270deg, #ff4e50, #f9d423, #1fe4f5, #3fbafe, #6a67ce, #ff6ec4);
-      background-size: 1200% 1200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rainbowBreath 6s ease infinite;
-    }
-
-    @keyframes rainbowBreath {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes rainbow {
+      0% { color: red; }
+      20% { color: orange; }
+      40% { color: yellow; }
+      60% { color: green; }
+      80% { color: blue; }
+      100% { color: violet; }
     }
 
     @media (max-width: 600px) {
@@ -140,11 +105,8 @@
   </style>
 </head>
 <body>
-  <!-- ⏰ 顶部实时时间 -->
-  <div id="currentTime"></div>
-
-  <!-- 🧋 主体区域 -->
   <div class="overlay">
+    <div class="header" id="topTime"></div>
     <h1 class="title">人生就是博</h1>
     <div class="buttons">
       <a href="https://wxjump.paradisemall.net/app/register.php?site_id=1032&topId=366487" class="btn" target="_blank">超凡国际</a>
@@ -154,45 +116,26 @@
     </div>
   </div>
 
-  <!-- 🔐 底部运行时长 -->
-  <div id="runtime"></div>
-
   <script>
-    const launchDate = new Date("2017-12-20T00:00:00"); // 站点上线日期
-
-    function updateCurrentTime() {
+    const launchDate = new Date("2017-01-01T00:00:00Z"); // 启动日期
+    function updateTime() {
       const now = new Date();
-      const year = now.getFullYear();
-      const month = (now.getMonth() + 1).toString().padStart(2, '0');
-      const date = now.getDate().toString().padStart(2, '0');
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const seconds = now.getSeconds().toString().padStart(2, '0');
-      const weekdayMap = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
-      const weekday = weekdayMap[now.getDay()];
-      document.getElementById("currentTime").innerText =
-        `现在时间：${year}年${month}月${date}日 ${hours}:${minutes}:${seconds} ${weekday}`;
+      const elapsed = Math.floor((now - launchDate) / 1000);
+      const days = Math.floor(elapsed / (3600 * 24));
+      const hours = Math.floor((elapsed % (3600 * 24)) / 3600);
+      const minutes = Math.floor((elapsed % 3600) / 60);
+      const seconds = elapsed % 60;
+
+      const weekMap = ['日', '一', '二', '三', '四', '五', '六'];
+      const weekDay = weekMap[now.getDay()];
+      const currentTime = now.toLocaleTimeString();
+
+      document.getElementById("topTime").innerText =
+        `本站已安全运行 ${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒｜现在时间：${currentTime}（星期${weekDay}）`;
     }
 
-    function updateRuntime() {
-      const now = new Date();
-      const totalDiff = now - launchDate;
-      const totalDays = Math.floor(totalDiff / (1000 * 60 * 60 * 24));
-      const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      const todaySeconds = Math.floor((now - todayStart) / 1000);
-      const hours = Math.floor(todaySeconds / 3600);
-      const minutes = Math.floor((todaySeconds % 3600) / 60);
-      const seconds = todaySeconds % 60;
-      document.getElementById("runtime").innerText =
-        `本站已安全运行 ${totalDays} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
-    }
-
-    updateCurrentTime();
-    updateRuntime();
-    setInterval(() => {
-      updateCurrentTime();
-      updateRuntime();
-    }, 1000);
+    setInterval(updateTime, 1000);
+    updateTime();
   </script>
 </body>
 </html>
