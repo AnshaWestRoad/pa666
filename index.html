@@ -109,7 +109,25 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* 移动端响应优化 */
+    /* 🌈 彩虹文字样式 */
+    #currentTime, #runtime {
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      margin: 10px 0;
+      background: linear-gradient(270deg, #ff4e50, #f9d423, #1fe4f5, #3fbafe, #6a67ce, #ff6ec4);
+      background-size: 1200% 1200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbowBreath 6s ease infinite;
+    }
+
+    @keyframes rainbowBreath {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     @media (max-width: 600px) {
       .title {
         font-size: 2rem;
@@ -122,14 +140,59 @@
   </style>
 </head>
 <body>
+  <!-- ⏰ 顶部实时时间 -->
+  <div id="currentTime"></div>
+
+  <!-- 🧋 主体区域 -->
   <div class="overlay">
     <h1 class="title">人生就是博</h1>
     <div class="buttons">
-      <a href="https://wxjump.paradisemall.net/app/register.php?site_id=1032&topId=366487" class="btn" target="_blank">超凡国际</a >
-      <a href="https://156.234.70.11:8888/#/link?join=656206" class="btn" target="_blank">C7娱乐</a >
-      <a href="https://www.d3788.com" class="btn" target="_blank">尊龙凯时</a >
-      <a href="https://www.eibedxdy.com/?palcode=1011299457" class="btn" target="_blank">邮箱注册</a >
+      <a href="https://wxjump.paradisemall.net/app/register.php?site_id=1032&topId=366487" class="btn" target="_blank">超凡国际</a>
+      <a href="https://156.234.70.11:8888/#/link?join=656206" class="btn" target="_blank">C7娱乐</a>
+      <a href="https://www.d3788.com" class="btn" target="_blank">尊龙凯时</a>
+      <a href="https://www.eibedxdy.com/?palcode=1011299457" class="btn" target="_blank">邮箱注册</a>
     </div>
   </div>
+
+  <!-- 🔐 底部运行时长 -->
+  <div id="runtime"></div>
+
+  <script>
+    const launchDate = new Date("2017-12-20T00:00:00"); // 站点上线日期
+
+    function updateCurrentTime() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = (now.getMonth() + 1).toString().padStart(2, '0');
+      const date = now.getDate().toString().padStart(2, '0');
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+      const weekdayMap = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+      const weekday = weekdayMap[now.getDay()];
+      document.getElementById("currentTime").innerText =
+        `现在时间：${year}年${month}月${date}日 ${hours}:${minutes}:${seconds} ${weekday}`;
+    }
+
+    function updateRuntime() {
+      const now = new Date();
+      const totalDiff = now - launchDate;
+      const totalDays = Math.floor(totalDiff / (1000 * 60 * 60 * 24));
+      const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const todaySeconds = Math.floor((now - todayStart) / 1000);
+      const hours = Math.floor(todaySeconds / 3600);
+      const minutes = Math.floor((todaySeconds % 3600) / 60);
+      const seconds = todaySeconds % 60;
+      document.getElementById("runtime").innerText =
+        `本站已安全运行 ${totalDays} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+    }
+
+    updateCurrentTime();
+    updateRuntime();
+    setInterval(() => {
+      updateCurrentTime();
+      updateRuntime();
+    }, 1000);
+  </script>
 </body>
 </html>
