@@ -30,16 +30,6 @@
       z-index: 1;
     }
 
-    .header {
-      position: absolute;
-      top: 10px;
-      width: 100%;
-      text-align: center;
-      font-size: 1rem;
-      animation: rainbow 5s linear infinite;
-      font-weight: bold;
-    }
-
     .title {
       font-size: 3.5rem;
       font-weight: bold;
@@ -78,19 +68,22 @@
       box-shadow: 0 0 30px #00e0ff, 0 0 60px #00aaff;
     }
 
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 6px 0;
+      font-size: 13px;
+      z-index: 999;
+      backdrop-filter: blur(5px);
+    }
+
     @keyframes glow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
-    }
-
-    @keyframes rainbow {
-      0% { color: red; }
-      20% { color: orange; }
-      40% { color: yellow; }
-      60% { color: green; }
-      80% { color: blue; }
-      100% { color: violet; }
     }
 
     @media (max-width: 600px) {
@@ -101,12 +94,15 @@
         font-size: 1rem;
         padding: 10px 20px;
       }
+      .footer {
+        font-size: 11px;
+        padding: 4px 0;
+      }
     }
   </style>
 </head>
 <body>
   <div class="overlay">
-    <div class="header" id="topTime"></div>
     <h1 class="title">人生就是博</h1>
     <div class="buttons">
       <a href="https://wxjump.paradisemall.net/app/register.php?site_id=1032&topId=366487" class="btn" target="_blank">超凡国际</a>
@@ -116,9 +112,12 @@
     </div>
   </div>
 
+  <!-- 底部运行时间显示 -->
+  <div class="footer" id="runtime"></div>
+
   <script>
-    const launchDate = new Date("2017-01-01T00:00:00Z"); // 启动日期
-    function updateTime() {
+    const launchDate = new Date("2017-01-01T00:00:00Z");
+    function updateRunTime() {
       const now = new Date();
       const elapsed = Math.floor((now - launchDate) / 1000);
       const days = Math.floor(elapsed / (3600 * 24));
@@ -126,16 +125,12 @@
       const minutes = Math.floor((elapsed % 3600) / 60);
       const seconds = elapsed % 60;
 
-      const weekMap = ['日', '一', '二', '三', '四', '五', '六'];
-      const weekDay = weekMap[now.getDay()];
-      const currentTime = now.toLocaleTimeString();
-
-      document.getElementById("topTime").innerText =
-        `本站已安全运行 ${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒｜现在时间：${currentTime}（星期${weekDay}）`;
+      document.getElementById("runtime").innerText =
+        `本站已安全运行 ${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
     }
 
-    setInterval(updateTime, 1000);
-    updateTime();
+    setInterval(updateRunTime, 1000);
+    updateRunTime();
   </script>
 </body>
 </html>
